@@ -4,7 +4,17 @@ function newMysqlConfig() {
         user: process.env.DB_USER,
         password: process.env.DB_PASS,
         database: process.env.DB_NAME,
-        soketPath: process.env.CLOUD_SQL_CONNECTION_NAME,
+        host: process.env.DB_HOST ? process.env.DB_HOST : 'localhost',
+        port: process.env.DB_PORT
+    }
+
+}
+
+function newAuthConfig() {
+
+    return {
+        secret: process.env.PASSPORT_SECRET,
+        eCode: process.env.E_CODE
     }
 
 }
@@ -15,6 +25,7 @@ function newConfig() {
         mysql: newMysqlConfig(),
         port: parseInt(process.env.PORT) || 8080,
         debug: Boolean(process.env.DEBUG) || process.env.NODE_ENV !== "production",
+        auth: newAuthConfig()
     }
 
 }
@@ -51,9 +62,27 @@ class ConfigManager {
 
         }
 
-        if (!this.data.mysql.soketPath) {
+        if (!this.data.mysql.host) {
 
-            console.log('Config: mysql.soketPath, not set!');
+            console.log('Config: mysql.host, not set!');
+
+        }
+
+        if (!this.data.mysql.port) {
+
+            console.log('Config: mysql.port, not set!');
+
+        }
+
+        if (!this.data.auth.secret) {
+
+            console.log('Config: Passport secret, not set!');
+
+        }
+
+        if (!this.data.auth.eCode) {
+
+            console.log('Config: E-Code, not set!');
 
         }
 

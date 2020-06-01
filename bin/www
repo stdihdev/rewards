@@ -13,12 +13,12 @@ var http = require('http');
 
 var config = require('../config');
 var mysql = require('../libs/mysql');
-
+config.load();
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(config.data.port);
 app.set('port', port);
 
 /**
@@ -29,7 +29,7 @@ var server = http.createServer(app);
 
 (async function main () {
 
-  config.load();
+  
   await mysql.connect();
 
   /**

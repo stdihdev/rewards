@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "65cbc484-788b-4847-a55c-32784ac2fd71",
+		"name": "rewards",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getByDiscountCode",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/getByCode?discountCode=harcotest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"getByCode"
+					],
+					"query": [
+						{
+							"key": "discountCode",
+							"value": "harcotest"
+						}
+					]
+				},
+				"description": "# Retrieve Discount Info\r\n\r\nObtain discount infomation from the discount code\r\n\r\n# Query Parameters\r\n\r\n**discountCode** required string\r\n\r\n# Example \r\n\r\n# Get Method\r\nurl: \"/api/getByCode?discountCode=harcotest\"\r\n\r\n\r\n# Return discount object\r\n{\r\n    \"id\": 1,\r\n    \"storeUrl\": \"rewards.woodchuckusa.com\",\r\n    \"created\": \"2020-05-28T05:11:41.000Z\",\r\n    \"discountCode\": \"harcotest\",\r\n    \"discountProductUrl\": \"/products/american-credit-card-bottle-opener\",\r\n    \"redeemedOrderName\": \"SR1001\",\r\n    \"redeemedOrderId\": \"2976762354098\"\r\n}\r\n\r\n\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "updateByDiscountCode",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlX2NvZGUiOiJ0ZXN0IiwiaWF0IjoxNTkwODU3MTQwLCJleHAiOjE1OTM0NDkxNDB9.d9wtfLK8Hxp-lp6t-sFFJ2Wf3Hj4LFB6ba2VJBtWxYI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"discountCode\": \"harcotest\",\n    \"redeemedOrderId\": \"2976762354098\",\n    \"redeemedOrderName\": \"SR1001\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/updateByCode",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"updateByCode"
+					]
+				},
+				"description": "# Update Discount Info\r\n\r\nUpdate discount infomation from the discount code\r\n\r\n# Parameters\r\n\r\n**discountCode** required string\r\n**redeemedOrderId** required string\r\n**redeemedOrderName** required string\r\n\r\n# Example \r\n\r\n# Put Method\r\nurl: \"/api/updateByCode\"\r\n\r\n{\r\n\t\"discountCode\": \"harcotest\",\r\n    \"redeemedOrderId\": \"2976762354098\",\r\n    \"redeemedOrderName\": \"SR1001\"\r\n}\r\n\r\n# Return discount object\r\n{\r\n    \"id\": 1,\r\n    \"storeUrl\": \"rewards.woodchuckusa.com\",\r\n    \"created\": \"2020-05-28T05:11:41.000Z\",\r\n    \"discountCode\": \"harcotest\",\r\n    \"discountProductUrl\": \"/products/american-credit-card-bottle-opener\",\r\n    \"redeemedOrderName\": \"SR1001\",\r\n    \"redeemedOrderId\": \"2976762354098\"\r\n}\r\n\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "getToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"eCode\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"token"
+					]
+				},
+				"description": "# Retrieve auth token\r\n\r\nReceive a password code and generate jwt auth token\r\n\r\n# Parameters\r\n\r\n**eCode** required string\r\n\r\n# Example \r\n\r\n# Post Method\r\nurl: \"/api/token\"\r\n\r\n{\r\n\t\"eCode\": \"test\"\r\n}\r\n\r\n\r\n# Return discount object\r\n\r\n{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlQ29kZSI6InRlc3QiLCJpYXQiOjE1OTA5MzcxMzMsImV4cCI6MTU5MzUyOTEzM30.bdQgVVKvdUScAidLP6p2Nxhm4QWoiNGqZlxTrsbmVhc\"\r\n}\r\n\r\n\r\n"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

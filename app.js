@@ -1,10 +1,12 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const passport = require('passport');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var apiRoutes = require('./api/routes');
+const apiRoutes = require('./api/routes');
+require('./config/passport-config');
 
 // view engine setup
 var app = express();
@@ -13,7 +15,18 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+// Authentication middleware
+// app.use(session({
+//   secret: process.env.PASSPORT_SECRET,
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     httpOnly: false,
+//   },
+// }));
+app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use('/api', apiRoutes);
 

@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const passport = require('passport');
 
-/* GET home page. */
-router.get('/rewards', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const discounts = require('../controllers/discounts');
+const auth = require('../controllers/auth');
+const router = express.Router();
+
+/* routes. */
+router.get('/getByCode', discounts.getByCode);
+router.put('/updateByCode', passport.authenticate('jwt', { session: false }), discounts.updateByCode);
+router.post('/token', auth.token)
 
 module.exports = router;
