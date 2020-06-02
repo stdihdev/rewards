@@ -4,12 +4,14 @@ const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const cors = require('cors')
 const apiRoutes = require('./api/routes');
 require('./config/passport-config');
 
 // view engine setup
 var app = express();
+
+app.use(cors())
 
 app.use(logger('dev'));
 app.use(express.json());
