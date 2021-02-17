@@ -35,6 +35,11 @@ const getByCode = async (req, res) => {
 
         }
 
+        if (item.redeemedOrderId) {
+            res.status(422).json({error: "You already used this code."});
+            return;
+        }
+
         res.json(item);
 
     } catch (err) {
