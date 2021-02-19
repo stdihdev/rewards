@@ -1,5 +1,6 @@
 const discounts = require('../db/discounts');
 const joi = require('../joi/discounts');
+const config = require('../../config');
 
 /**
  * Takes a discount code with query params and returns a discound row.
@@ -92,6 +93,7 @@ const updateByCode = async (req, res) => {
     } catch (err) {
         
         console.log(err);
+        res.status(500).json({error: err})
         return;
 
     }
