@@ -7,7 +7,7 @@ const router = express.Router();
 
 /* routes. */
 router.get('/getByCode', discounts.getByCode);
-router.put('/updateByCode', passport.authenticate('jwt', { session: false }), discounts.updateByCode);
+router.put('/updateByCode', discounts.updateByCode);
 router.post('/token', auth.token)
 
 module.exports = router;

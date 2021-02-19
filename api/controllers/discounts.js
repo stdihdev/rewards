@@ -61,6 +61,12 @@ const getByCode = async (req, res) => {
  */
 const updateByCode = async (req, res) => {
 
+    const eCode = req.headers.authorization;
+
+    if(eCode !== config.data.auth.eCode) {
+        return res.status(401).send("Unauthorized.");
+    }
+
     let result = joi.validatePut(req.body);
 
     if(result.error) {
